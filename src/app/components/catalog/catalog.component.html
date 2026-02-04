@@ -1,0 +1,47 @@
+<div class="catalog-container">
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <h2 class="filters-title">Filter by Color</h2>
+    <div class="filter-buttons">
+      <button
+        *ngFor="let filter of filters"
+        [class.active]="isFilterActive(filter.value)"
+        (click)="filterByColor(filter.value)"
+        class="filter-btn"
+      >
+        {{ filter.label }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Photo Count Section -->
+  <div class="info-section">
+    <p class="total-photos">
+      <strong>Total Photos: {{ totalPhotos }}</strong>
+    </p>
+  </div>
+
+  <!-- Photos Grid -->
+  <div class="photos-grid">
+    <div *ngFor="let photo of photos" class="photo-card">
+      <img
+        [src]="getImageUrl(photo)"
+        [alt]="photo.title"
+        (error)="onImageError($event)"
+        class="photo-image"
+      />
+      <p class="photo-title">{{ photo.title }}</p>
+    </div>
+  </div>
+
+  <!-- More Flowers Button -->
+  <div class="pagination-section">
+    <button
+      (click)="loadMore()"
+      [disabled]="photos.length === 0"
+      class="load-more-btn"
+    >
+      More Flowers
+    </button>
+  </div>
+</div>
