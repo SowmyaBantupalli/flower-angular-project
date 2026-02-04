@@ -68,6 +68,7 @@ export class FlowerService {
     return `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
   }
 
+  //method for pagination
   loadMore(colorCode: string | null = null): void {
     const currentPage = this.currentPage$.getValue();
     this.searchFlowers(colorCode, currentPage + 1).subscribe();
